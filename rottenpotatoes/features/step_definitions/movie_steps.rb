@@ -11,7 +11,7 @@ end
 # Make sure that one string (regexp) occurs before or after another one
 #   on the same page
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
-  page.body.find_index(e1)<page.body.find_index(e2)
+  assert page.body.index(e1)<page.body.index(e2)
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
 end
