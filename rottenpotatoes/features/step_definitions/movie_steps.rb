@@ -52,6 +52,10 @@ Then /I should (not )?see the following ratings: (.*)/ do |should_not, rating_li
 end
 
 Then /I should see all the movies/ do
-  (page.all('table#movies tr').count - 1).should == Movie.all.count
+  if page.respond_to? :should
+    (page.all('table#movies tr').count - 1).should == Movie.all.count
+  else
+    assert (page.all('table#movies tr').count - 1) == Movie.all.count
+  end
   # Make sure that all the movies in the app are visible in the table
 end
